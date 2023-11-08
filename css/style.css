@@ -1,0 +1,114 @@
+:root {
+    --teal: #008080;
+    --segundo: #222222;
+    --tercero: #f5f5f5;
+    --blanco: #ffffff;
+    --negro: #000000;
+    --fondo: #efefef;
+    --sombra: #00000055;
+}
+html {
+    font-family: 'Montserrat', sans-serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--fondo);
+    color: var(--segundo);
+}
+header {
+    background-color: var(--teal);
+    color: var(--blanco);
+}
+header div {
+    padding: 3rem 3rem 0.5rem 3rem;
+}
+header h1 {
+    font-size: 3rem;
+    text-align: center;
+}
+.container {
+    width: 30rem;
+    margin: 0 auto;
+}
+section article {
+    background-color: var(--blanco);
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+    padding: 0.25rem 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+section article h2, section article p {
+    margin: 1rem;
+}
+section article:hover {
+    box-shadow: 0 0.1rem 0.4rem var(--sombra);
+}
+section article img {
+    margin: 0 1px;
+}
+footer {
+    background-color: var(--segundo);
+    padding: 3rem;
+    color: var(--blanco);
+
+}
+footer section {
+    float: right;
+}
+footer p {
+    margin: 0;
+}
+footer a {
+    transition: color 0.3s ease;
+    color: var(--blanco);
+    text-decoration: none;
+}
+footer a:hover {
+    color: var(--teal);
+}
+.menu {
+    width: 100% !important;
+    background: var(--teal);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-radius: 0 0 0.6rem 0.6rem;
+    position: fixed;
+    top: 0px;
+    text-align: right;
+}
+.menu li {
+    display: inline-block;
+    padding: 0 0.2rem;
+}
+.menu li a {
+    display: inline-block;
+    padding: 0.2rem 3rem;
+    color: var(--blanco);
+    text-decoration: none;
+}
+.menu li a:hover {
+    background: var(--blanco);
+    color: var(--teal);
+    border-radius: 0.6rem;
+}
+.inicio a {
+    color: var(--teal) !important;
+    background: var(--blanco);
+    border-radius: 0.6rem;
+}
+.inicio a:hover {
+    background: var(--segundo) !important;
+    color: var(--teal) !important;
+    border-radius: 0.6rem;
+}
+#nosotros {
+    
+    border-top: 0.06rem solid var(--sombra);
+}
+#nosotros p {
+    margin: 1rem auto;
+    width: 50rem;
+}
