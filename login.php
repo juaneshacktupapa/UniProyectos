@@ -11,6 +11,7 @@
 <body>
     <?php
         require "login_html.php";
+        include "post.php";
     ?>
 </body>
 </html>

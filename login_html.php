@@ -4,12 +4,12 @@
 <main>
     <br>
     <div id="login">
-        <form action="" method="post" id="form_login">
+        <form action="login.php" method="post" id="form_login">
             <label for="correo">Correo electrónico</label>
             <input type="email" name="correo" id="correo" placeholder="Correo electrónico">
             <br>
-            <label for="Contraseña">Contraseña</label>
-            <input type="text" name="nombre" id="nombre" placeholder="Contraseña">
+            <label for="contraseña">Contraseña</label>
+            <input type="password" name="contraseña" id="contraseña" placeholder="Contraseña">
             <br>
             <div class="acciones">
                 <button type="submit" name="ingresar">Ingresar</button>
