@@ -2,7 +2,7 @@
     <h1>Regístrate</h1>
 </header>
 <main>
-    <form action="" method="post">
+    <form action="registro.php" method="post">
         <!-- Aquí van todos los campos de la BD -->
         <label for="tipoRegistro">Selecciona el tipo de registro:</label>
         <select id="tipoRegistro" onchange="mostrarCamposRegistro()">

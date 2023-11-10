@@ -1,6 +1,6 @@
 CREATE DATABASE uniproyectos;
 USE uniproyectos;
-CREATE TABLE Usuarios (
+CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombres VARCHAR(50),
     apellidos VARCHAR(50),
@@ -23,7 +23,7 @@ CREATE TABLE Usuarios (
     aceptaTerminos BOOLEAN,
     fechaHoraRegistro TIMESTAMP    
 );
-CREATE TABLE Empresas (
+CREATE TABLE empresas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100),
     razonSocial VARCHAR(100),
@@ -46,7 +46,7 @@ CREATE TABLE Empresas (
     aceptaTerminos BOOLEAN,
     fechaHoraRegistro TIMESTAMP
 );
-CREATE TABLE Proyecto (
+CREATE TABLE proyecto (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(100),
     descripcion TEXT,
@@ -61,7 +61,7 @@ CREATE TABLE Proyecto (
     fechaRegistro TIMESTAMP,
     informacionAdicional TEXT
 );
-CREATE TABLE PRO_USU (
+CREATE TABLE pro_usu (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_Proyecto INT,
     id_Usuario INT,

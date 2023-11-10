@@ -11,6 +11,7 @@
 <body>
     <?php
         require "publicacion_html.php";
+        include "post.php";
     ?>
 </body>
 </html>
