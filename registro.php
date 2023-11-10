@@ -12,6 +12,7 @@
 <body>
     <?php
         require "registro_html.php";
+        include "post.php";
     ?>
 </body>
 </html>

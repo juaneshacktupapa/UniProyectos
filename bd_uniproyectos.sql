@@ -19,9 +19,9 @@ CREATE TABLE Usuarios (
     perfil VARCHAR(50), -- Profesor Estudiante Publico General
     universidad VARCHAR(100),
     correoInstitucional VARCHAR(100),
-    grado VARCHAR(50) -- Sin estudios Primaria Secundaria Tencnico Tecnologo Profesional Especialización Maestria Doctorado
+    grado VARCHAR(50), -- Sin estudios Primaria Secundaria Tencnico Tecnologo Profesional Especialización Maestria Doctorado
     aceptaTerminos BOOLEAN,
-    fechaHoraRegistro TIMESTAMP,    
+    fechaHoraRegistro TIMESTAMP    
 );
 CREATE TABLE Empresas (
     id INT AUTO_INCREMENT PRIMARY KEY,
