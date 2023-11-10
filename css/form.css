@@ -71,13 +71,18 @@ label {
     display: block;
     width: 100%;
 }
-input, select{
+input, select, textarea{
     margin-bottom: 1.2rem;
     width: 100%;
     padding: 0.6rem;
     box-sizing: border-box;
     border: 0.06rem solid var(--sombra);
     border-radius: 0.5rem;
+}
+textarea {
+    resize: vertical;
+    min-height: 3rem;
+    max-height: 10rem;
 }
 button{
     margin-bottom: 0;
@@ -99,7 +104,7 @@ button:focus{
     color: var(--tercero);
     cursor: progress !important;
 }
-input:focus {
+input:focus, textarea:focus, select:focus {
     outline: none; 
     border: 1px solid var(--teal);
 }
