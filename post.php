@@ -1,5 +1,7 @@
 <?php
-    require "conexionDB.php";
+    error_reporting(E_ALL);
+
+    include "conexionDB.php";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -34,49 +36,19 @@
                 $aceptaTerminos = isset($_POST["aceptaTerminos"]) ? 1 : 0; // Si se marcó el checkbox, se almacena "Sí", de lo contrario, "No"
                 $fechaHoraRegistro = date("Y-m-d H:i:s"); // Obtiene la fecha y hora actuales del servidor
                 
-                $sexoBooleano = ($sexo === "Masculino") ? 1 : 0;
+                $sexoBooleano = ($sexo === "M") ? 1 : 0;
 
-                $query = "SELECT nombres AS origen FROM usuarios WHERE correoPersonal = '$correo' UNION SELECT nombre AS origen FROM empresas WHERE correo = '$correo'";
-                
-                $result = consulta($query);
-
-                if(mysqli_num_rows($result) > 0){
-                    echo "<div id='msg' class='msg' style='color: #7f0001; text-align: center; margin-top: 50px; font-size: 20px; font-weight: bold; font-style: oblique;'>Error en el registro, ya se encuentra registrado</div>" . mysqli_connect_error();
-                    echo "<script>
-                            setTimeout(function(){
-                            
-                                var mensajeExitoso = document.getElementById('msg');
-                            
-                                if(mensajeExitoso){
-                                    mensajeExitoso.style.display = 'none';
-                                }
-                            },4000); //3s dilay
-                        </script>";
-                }else{
-                
-                    $query = "INSERT INTO usuarios (nombres, apellidos, correoPersonal, contrasena, numeroCelular, numeroFijo, tipoDocumento, numeroDocumento, fechaNacimiento, paisNacimiento, ciudadNacimiento, direccion, estadoCivil, sexo, perfil, universidad, correoInstitucional, grado, aceptaTerminos, fechaHoraRegistro)
-                    VALUES ('$nombres', '$apellidos', '$correoPersonal', '$contrasena', $numeroCelular, $numeroFijo, '$tipoDocumento', $numeroDocumento, '$fechaNacimiento', '$paisNacimiento', '$ciudadNacimiento', '$direccion', '$estadoCivil', '$sexoBooleano', '$perfil', '$universidad', '$correoInstitucional', '$grado', $aceptaTerminos, '$fechaHoraRegistro')";
+                $consulta = "INSERT INTO usuarios (nombres, apellidos, correoPersonal, contrasena, numeroCelular, numeroFijo, tipoDocumento, numeroDocumento, fechaNacimiento, paisNacimiento, ciudadNacimiento, direccion, estadoCivil, sexo, perfil, universidad, correoInstitucional, grado, aceptaTerminos, fechaHoraRegistro) VALUES ('$nombres', '$apellidos', '$correoPersonal', '$contrasena', $numeroCelular, $numeroFijo, '$tipoDocumento', $numeroDocumento, '$fechaNacimiento', '$paisNacimiento', '$ciudadNacimiento', '$direccion', '$estadoCivil', '$sexoBooleano', '$perfil', '$universidad', '$correoInstitucional', '$grado', $aceptaTerminos, '$fechaHoraRegistro')";
                     
-                    $result = consulta($query);
+                $result = consulta($consulta);
                 
-                    if($result === TRUE){
-                        echo "<div id='msg' class='msg' style='color: teal; text-align: center; margin-top: 50px; font-size: 20px; font-weight: bold;'>Se registro correctamente. Bienvenid@ $nombres!</div>";
-                        echo "<script>
-                            setTimeout(function(){
-                            
-                                var mensajeExitoso = document.getElementById('msg');
-                            
-                                if(mensajeExitoso){
-                                    mensajeExitoso.style.display = 'none';
-                                }
-                            },4000); //3s dilay
-                        </script>";  
-                    }
-                    else{
-                        echo "No se ha podido registrar, verifique e intente nuevamente" . mysqli_connect_error();
+                if ($result){
+                    echo "Datos almacenados correctamente";
+                }
+                if (!$result) {
+                    echo "Error en la consulta: " . mysqli_error($conexion);
+                }
                     
-                    }    
-                }    
             } elseif ($tipoRegistro === "empresas") {
                 
                 // Procesa campos específicos para empresas
@@ -84,9 +56,9 @@
                 $nombre = $_POST["nombre"];
                 $razonSocial = $_POST["razonSocial"];
                 $correo = $_POST["correo"];
-                $contrasena = $_POST["contrasena"];
-                $numeroFijo = $_POST["numeroFijo"];
-                $numeroCelular = $_POST["numeroCelular"];
+                $contrasena = $_POST["contrasenaE"];
+                $numeroFijo = $_POST["numeroFijoE"];
+                $numeroCelular = $_POST["numeroCelularE"];
                 $NIT = $_POST["NIT"];
                 $tipoEmpresa = $_POST["tipoEmpresa"];
                 $descripcion = $_POST["descripcion"];
@@ -94,133 +66,104 @@
                 $tamaño = $_POST["tamaño"];
                 $sitioWeb = $_POST["sitioWeb"];
                 $pais = $_POST["pais"];
-                $direccion = $_POST["direccion"];
+                $direccion = $_POST["direccionE"];
                 $nombreRepresentanteLegal = $_POST["nombreRepresentanteLegal"];
                 $cargoRepresentanteLegal = $_POST["cargoRepresentanteLegal"];
                 $correoRepresentanteLegal = $_POST["correoRepresentanteLegal"];
                 $numeroRepresentanteLegal = $_POST["numeroRepresentanteLegal"];
-                $aceptaTerminos = isset($_POST["aceptaTerminos"]) ? 1 : 0; // Si se marcó el checkbox, se almacena "Sí", de lo contrario, "No"
+                $aceptaTerminos = isset($_POST["aceptaTerminosE"]) ? 1 : 0; // Si se marcó el checkbox, se almacena "Sí", de lo contrario, "No"
                 $fechaHoraRegistro = date("Y-m-d H:i:s"); // Obtiene la fecha y hora actuales del servidor
                 
-                $query = "SELECT nombres AS origen FROM usuarios WHERE correoPersonal = '$correo' UNION SELECT nombre AS origen FROM empresas WHERE correo = '$correo'";
-                
-                $result = consulta($query);
+                $consulta = "INSERT INTO empresas (nombre, razonSocial, correo, contrasena, numeroFijo, numeroCelular, NIT, tipoEmpresa, descripcion, area, tamaño, sitioWeb, pais, direccion, nombreRepresentanteLegal, cargoRepresentanteLegal, correoRepresentanteLegal, numeroRepresentanteLegal, aceptaTerminos, fechaHoraRegistro) VALUES ('$nombre', '$razonSocial', '$correo', '$contrasena', $numeroFijo, $numeroCelular, $NIT, '$tipoEmpresa', '$descripcion', '$area', '$tamaño', '$sitioWeb', '$pais', '$direccion', '$nombreRepresentanteLegal', '$cargoRepresentanteLegal', '$correoRepresentanteLegal', $numeroRepresentanteLegal, $aceptaTerminos, '$fechaHoraRegistro')";  
 
-                if(mysqli_num_rows($result) > 0){
-                    echo "<div id='msg' class='msg' style='color: #7f0001; text-align: center; margin-top: 50px; font-size: 20px; font-weight: bold; font-style: oblique;'>Error en el registro, ya se encuentra registrado</div>" . mysqli_connect_error();
-                    echo "<script>
-                            setTimeout(function(){
-                            
-                                var mensajeExitoso = document.getElementById('msg');
-                            
-                                if(mensajeExitoso){
-                                    mensajeExitoso.style.display = 'none';
-                                }
-                            },4000); //3s dilay
-                        </script>";
-                }else{
+                $result = consulta($consulta);
                 
-                    $query = "INSERT INTO empresas (nombre, razonSocial, correo, contrasena, numeroFijo, numeroCelular, NIT, tipoEmpresa, descripcion, area, tamaño, sitioWeb, pais, direccion, nombreRepresentanteLegal, cargoRepresentanteLegal, correoRepresentanteLegal, numeroRepresentanteLegal, aceptaTerminos, fechaHoraRegistro)
-                    VALUES ('$nombre', '$razonSocial', '$correo', '$contrasena', $numeroFijo, $numeroCelular, $NIT, '$tipoEmpresa', '$descripcion', '$area', '$tamaño', '$sitioWeb', '$pais', '$direccion', '$nombreRepresentanteLegal', '$cargoRepresentanteLegal', '$correoRepresentanteLegal', $numeroRepresentanteLegal, $aceptaTerminos, '$fechaHoraRegistro')";  
-
-                    $result = consulta($query);
-                
-                    if($result === TRUE){
-                        echo "<div id='msg' class='msg' style='color: teal; text-align: center; margin-top: 50px; font-size: 20px; font-weight: bold;'>Se registro correctamente. Bienvenid@ $nombres!</div>";
-                        echo "<script>
-                            setTimeout(function(){
-                            
-                                var mensajeExitoso = document.getElementById('msg');
-                            
-                                if(mensajeExitoso){
-                                    mensajeExitoso.style.display = 'none';
-                                }
-                            },4000); //3s dilay
-                        </script>";  
-                    }
-                    else{
-                        echo "No se ha podido registrar, verifique e intente nuevamente" . mysqli_connect_error();    
-                    }    
+                if ($result){
+                    echo "Datos almacenados correctamente";
                 }
+
+                if (!$result) {
+                    echo "Error en la consulta: " . mysqli_error($conexion);
+                }    
             }
         }
 
-        if(isset($_POST["publicar"])){
+        // if(isset($_POST["publicar"])){
 
-        }
+        // }
 
-        if(isset($_POST["ingresar"])){
+        // if(isset($_POST["ingresar"])){
             
-            if(empty($_POST["correo"]) || empty($_POST["contrasena"])){
+        //     if(empty($_POST["correo"]) || empty($_POST["contrasena"])){
 
-                echo "<div id='msg' class='msg' style='color: #7f0001; text-align: center; margin-top: 50px; font-size: 20px; font-weight: bold; font-style: oblique;'>Por favor, llene todos los campos de ingreso para continuar</div>" . mysqli_connect_error();
-                echo "<script>
-                    setTimeout(function(){
+        //         echo "<div id='msg' class='msg' style='color: #7f0001; text-align: center; margin-top: 50px; font-size: 20px; font-weight: bold; font-style: oblique;'>Por favor, llene todos los campos de ingreso para continuar</div>" . mysqli_connect_error();
+        //         echo "<script>
+        //             setTimeout(function(){
 
-                        var mensajeExitoso = document.getElementById('msg');
+        //                 var mensajeExitoso = document.getElementById('msg');
 
-                        if(mensajeExitoso){
-                            mensajeExitoso.style.display = 'none';
-                        }
-                    },4000); //3s dilay
-                </script>";
+        //                 if(mensajeExitoso){
+        //                     mensajeExitoso.style.display = 'none';
+        //                 }
+        //             },4000); //3s dilay
+        //         </script>";
     
-            }else{
+        //     }else{
 
-                $correo = $_POST["correo"];
-                $contraseña =trim($_POST["contrasena"]);
-                ingreso($correo, $contraseña);
-            }
-        }
+        //         $correo = $_POST["correo"];
+        //         $contraseña =trim($_POST["contrasena"]);
+        //         ingreso($correo, $contraseña);
+        //     }
+        // }
 
-        function ingreso($correo, $contraseña){
+        // function ingreso($correo, $contraseña){
        
-            $query = "SELECT * FROM usuarios WHERE correoPersonal = '$correo' AND contrasena = '$contraseña' ";
-            $result = consulta($query);
+        //     $query = "SELECT * FROM usuarios WHERE correoPersonal = '$correo' AND contrasena = '$contraseña' ";
+        //     $result = consulta($query);
     
-            //muestra si la consulta se envia correctamente
-            #var_dump($result);
+        //     //muestra si la consulta se envia correctamente
+        //     #var_dump($result);
            
             
     
-            if(mysqli_num_rows($result) > 0){
+        //     if(mysqli_num_rows($result) > 0){
                 
-                echo "<div id='msg' class='msg' style='color: #7f0001; text-align: center; margin-top: 50px; font-size: 20px; font-weight: bold; font-style: oblique;'>Bienvenid@ a Uniproyectos!</div>" . mysqli_connect_error();
-                echo "<script>
-                        setTimeout(function(){
+        //         echo "<div id='msg' class='msg' style='color: #7f0001; text-align: center; margin-top: 50px; font-size: 20px; font-weight: bold; font-style: oblique;'>Bienvenid@ a Uniproyectos!</div>" . mysqli_connect_error();
+        //         echo "<script>
+        //                 setTimeout(function(){
     
-                            var mensajeExitoso = document.getElementById('msg');
+        //                     var mensajeExitoso = document.getElementById('msg');
     
-                            if(mensajeExitoso){
-                                mensajeExitoso.style.display = 'none';
-                            }
-                        },4000); //3s dilay
-                    </script>";
-                    header("Location: publicacion.php?mensaje=Bienvenido");
-                    exit();  
-            }else{
+        //                     if(mensajeExitoso){
+        //                         mensajeExitoso.style.display = 'none';
+        //                     }
+        //                 },4000); //3s dilay
+        //             </script>";
+        //             header("Location: publicacion.php?mensaje=Bienvenido");
+        //             exit();  
+        //     }else{
                 
-                $query = "SELECT * FROM usuarios WHERE correoPersonal = '$correo' AND contrasena = '$contraseña' ";
-                $result = consulta($query);
+        //         $query = "SELECT * FROM usuarios WHERE correoPersonal = '$correo' AND contrasena = '$contraseña' ";
+        //         $result = consulta($query);
     
-                if($result){
+        //         if($result){
     
-                    echo "<div id='msg' class='msg' style='color: #ffff; text-align: center; margin-top: 50px; font-size: 20px; font-weight: bold;'>Contraseña y/o correo incorrecto verifique he intente nuevamente</div>";
-                    echo "<script>
-                        setTimeout(function(){
+        //             echo "<div id='msg' class='msg' style='color: #ffff; text-align: center; margin-top: 50px; font-size: 20px; font-weight: bold;'>Contraseña y/o correo incorrecto verifique he intente nuevamente</div>";
+        //             echo "<script>
+        //                 setTimeout(function(){
     
-                            var mensajeExitoso = document.getElementById('msg');
+        //                     var mensajeExitoso = document.getElementById('msg');
     
-                            if(mensajeExitoso){
-                                mensajeExitoso.style.display = 'none';
-                            }
-                        },4000); //3s dilay
-                        </script>";    
-                }        
-            }
-        }
+        //                     if(mensajeExitoso){
+        //                         mensajeExitoso.style.display = 'none';
+        //                     }
+        //                 },4000); //3s dilay
+        //                 </script>";    
+        //         }        
+        //     }
+        // }
         
-        exit();
+        // // exit();
     
     }
 ?>

@@ -11,7 +11,7 @@
 </head>
 <body>
     <?php
-        require "registro_html.php";
+        include "registro_html.php";
         include "post.php";
     ?>
 </body>

@@ -5,12 +5,12 @@
     <form action="registro.php" method="post">
         <!-- Aquí van todos los campos de la BD -->
         <label for="tipoRegistro">Selecciona el tipo de registro:</label>
-        <select id="tipoRegistro" onchange="mostrarCamposRegistro()">
+        <select id="tipoRegistro" name="tipoRegistro" onchange="mostrarCamposRegistro()">
             <option value="usuarios">Usuarios</option>
             <option value="empresas">Empresas</option>
         </select>
 
-        <div id="usuarios" style="display: block">
+        <div id="usuarios" style="display: block; visibility: visible">
             <!-- Campos de registro para Usuarios -->
             <label for="nombres">Nombres:</label>
             <input type="text" name="nombres" id="nombres" placeholder="Nombres" required>
@@ -25,10 +25,10 @@
             <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required>
         
             <label for="numeroCelular">Número de celular:</label>
-            <input type="tel" name="numeroCelular" id="numeroCelular" placeholder="Número de celular" required>
+            <input type="number" name="numeroCelular" id="numeroCelular" placeholder="Número de celular" required>
         
             <label for="numeroFijo">Número fijo:</label>
-            <input type="tel" name="numeroFijo" id="numeroFijo" placeholder="Número fijo" required>
+            <input type="number" name="numeroFijo" id="numeroFijo" placeholder="Número fijo" required>
         
             <label for="tipoDocumento">Tipo de documento:</label>
             <select name="tipoDocumento" id="tipoDocumento" required>
@@ -68,8 +68,8 @@
             <label for="sexo">Sexo (M/F):</label>
             <select name="sexo" id="sexo" required>
                 <option value="" disabled selected>Selecciona un sexo</option>    
-                <option value="Masculino">Masculino</option>
-                <option value="Femenino">Femenino</option>
+                <option value="M">Masculino</option>
+                <option value="F">Femenino</option>
             </select>
         
             <label for="perfil">Perfil:</label>
@@ -105,7 +105,7 @@
     
         </div>
 
-        <div id="empresas" style="display: none">
+        <div id="empresas" style="display: none; visibility: hidden">
             <!-- Campos de registro para Empresas -->
             <label for="nombre">Nombre de la Empresa</label>
             <input type="text" name="nombre" id="nombre" placeholder="Nombre de la Empresa" required>
@@ -116,17 +116,17 @@
             <label for="correo">Correo Electrónico</label>
             <input type="email" name="correo" id="correo" placeholder="Correo Electrónico" required>
 
-            <label for="contrasena">Contraseña</label>
-            <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required>
+            <label for="contrasenaE">Contraseña</label>
+            <input type="password" name="contrasenaE" id="contrasenaE" placeholder="Contraseña" required>
 
-            <label for="numeroFijo">Número Fijo</label>
-            <input type="tel" name="numeroFijo" id="numeroFijo" placeholder="Número Fijo" required>
+            <label for="numeroFijoE">Número Fijo</label>
+            <input type="number" name="numeroFijoE" id="numeroFijoE" placeholder="Número Fijo" required>
 
-            <label for="numeroCelular">Número de Celular</label>
-            <input type="tel" name="numeroCelular" id="numeroCelular" placeholder="Número de Celular" required>
+            <label for="numeroCelularE">Número de Celular</label>
+            <input type="number" name="numeroCelularE" id="numeroCelularE" placeholder="Número de Celular" required>
 
             <label for="NIT">NIT</label>
-            <input type="text" name="NIT" id="NIT" placeholder="NIT" required>
+            <input type="number" name="NIT" id="NIT" placeholder="NIT" required>
 
             <label for="tipoEmpresa">Tipo de Empresa</label>
             <select name="tipoEmpresa" id="tipoEmpresa" required>
@@ -152,7 +152,7 @@
             <textarea name="descripcion" id="descripcion" placeholder="Descripción de la Empresa" required></textarea>
 
             <label for="area">Área de la Empresa</label>
-            <select name="areaEmpresa" id="areaEmpresa" required>
+            <select name="area" id="area" required>
                 <option value="" disabled selected>Selecciona un area</option>
                 <option value="Ventas">Ventas</option>
                 <option value="Marketing">Marketing</option>
@@ -177,7 +177,7 @@
             </select>
 
             <label for="tamaño">Tamaño de la Empresa</label>
-            <select name="tipoEmpresa" id="tipoEmpresa" required>
+            <select name="tamaño" id="tamaño" required>
                 <option value="" disabled selected>Selecciona un tamaño</option>    
                 <option value="Microempresa">Microempresa</option>
                 <option value="Pequeña Empresa">Pequeña Empresa</option>
@@ -191,8 +191,8 @@
             <label for="pais">País</label>
             <select name="pais" id="pais" required> </select>
 
-            <label for="direccion">Dirección</label>
-            <input type="text" name="direccion" id="direccion" placeholder="Dirección" required>
+            <label for="direccionE">Dirección</label>
+            <input type="text" name="direccionE" id="direccionE" placeholder="Dirección" required>
 
             <label for="nombreRepresentanteLegal">Nombre del Representante Legal</label>
             <input type="text" name="nombreRepresentanteLegal" id="nombreRepresentanteLegal" placeholder="Nombre del Representante Legal" required>
@@ -204,10 +204,10 @@
             <input type="email" name="correoRepresentanteLegal" id="correoRepresentanteLegal" placeholder="Correo del Representante Legal" required>
 
             <label for="numeroRepresentanteLegal">Número del Representante Legal</label>
-            <input type="tel" name="numeroRepresentanteLegal" id="numeroRepresentanteLegal" placeholder="Número del Representante Legal" required>
+            <input type="number" name="numeroRepresentanteLegal" id="numeroRepresentanteLegal" placeholder="Número del Representante Legal" required>
 
-            <label for="aceptaTerminos">Acepta términos y condiciones:</label>
-            <input type="checkbox" name="aceptaTerminos" id="aceptaTerminos" required>
+            <label for="aceptaTerminosE">Acepta términos y condiciones:</label>
+            <input type="checkbox" name="aceptaTerminosE" id="aceptaTerminosE" required>
         </div>
         <div class="acciones">
             <br>

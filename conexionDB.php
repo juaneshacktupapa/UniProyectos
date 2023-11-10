@@ -1,35 +1,31 @@
 <?php
-
+    error_reporting(E_ALL);
+        
     function conectar(){
-
-        $host = "127.0.0.1";
-        $user = "root";
+        $servername = "localhost";
+        $username = "root";
         $password = "";
-        $data_base = "UniProyectos";
+        $database = "uniproyectos";
 
-        //Conexion
-        $connection = new mysqli($host, $user, $password, $data_base);
+        $conexion = mysqli_connect($servername, $username, $password, $database);
 
-        if(!$connection){
-            die("conexion fallida, pruebe nuevamente". mysqli_connect_error());
+        if(!$conexion){
+         die("Conexion fallida: ". mysqli_connect_error());
         }
 
-        return $connection;
+         //echo "<br> Conexion exitosa <br> <br>";
+
+        return $conexion;
     }
-    
-    function consulta($query){
-        $connection = conectar();
-        $result = mysqli_query($connection, $query);
+
+     function consulta($consulta){
+        $conexion = conectar();
+        $result = mysqli_query($conexion, $consulta);
+        desconectar($conexion);
         return $result;
-        desconectar($connection);
     }
 
-    function desconectar($connection){
-        mysqli_close($connection);
+     function desconectar($conexion){
+        mysqli_close($conexion); 
     }
-
-
-?>  
-
-
-
+?>
