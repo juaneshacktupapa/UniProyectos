@@ -44,6 +44,8 @@
                 
                 if ($result){
                     echo "Datos almacenados correctamente";
+                    echo "<script>window.location.href='login.php?mensaje=Bienvenido';</script>";
+                    exit();
                 }
                 if (!$result) {
                     echo "Error en la consulta: " . mysqli_error($conexion);
@@ -80,6 +82,8 @@
                 
                 if ($result){
                     echo "Datos almacenados correctamente";
+                    echo "<script>window.location.href='login.php?mensaje=Bienvenido';</script>";
+                    exit();
                 }
 
                 if (!$result) {
@@ -88,9 +92,34 @@
             }
         }
 
-        // if(isset($_POST["publicar"])){
+        if(isset($_POST["publicar"])){
+            $titulo = $_POST["titulo"];
+            $descripcion = $_POST["descripcion"];
+            $area = $_POST["area"];
+            $areaTematica = $_POST["areaTematica"];
+            $estado = $_POST["estado"];
+            $ubicacion = $_POST["ubicacion"];
+            $correo = $_POST["correo"];
+            $telefono = $_POST["telefono"];
+            $fechaInicio = $_POST["fechaInicio"];
+            $fechaFin = $_POST["fechaFin"];
+            $fechaHoraRegistro = date("Y-m-d H:i:s"); // Obtiene la fecha y hora actuales del servidor
+            $informacionAdicional = $_POST["informacionAdicional"];
+            
+            $consulta = "INSERT INTO proyecto (titulo, descripcion, area, areaTematica, estado, ubicacion, correo, telefono, fechaInicio, fechaFin, fechaRegistro, informacionAdicional) VALUES ('$titulo', '$descripcion', '$area', '$areaTematica', '$estado', '$ubicacion', '$correo', '$telefono', '$fechaInicio', '$fechaFin', '$fechaHoraRegistro', '$informacionAdicional')";
+    
+            $result = consulta($consulta);
+            
+            if ($result){
+                echo "Datos almacenados correctamente";
+                echo "<script>window.location.href='index.php?mensaje=Bienvenido';</script>";
+                exit();
+            }
 
-        // }
+            if (!$result) {
+                echo "Error en la consulta: " . mysqli_error($conexion);
+            }  
+        }
 
         // if(isset($_POST["ingresar"])){
             

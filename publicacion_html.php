@@ -78,7 +78,7 @@
         <input type="email" name="correo" id="correo" placeholder="Correo de Contacto" required>
 
         <label for="telefono">Teléfono de Contacto</label>
-        <input type="tel" name="telefono" id="telefono" placeholder="Teléfono de Contacto" required>
+        <input type="number" name="telefono" id="telefono" placeholder="Teléfono de Contacto" required>
 
         <label for="fechaInicio">Fecha de Inicio</label>
         <input type="date" name="fechaInicio" id="fechaInicio" required>

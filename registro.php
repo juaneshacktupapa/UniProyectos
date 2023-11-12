@@ -8,6 +8,15 @@
     <link rel="shortcut icon" href="imagenes/favicon.ico" type="image/x-icon">
     <title>UniProyectos</title>
     <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Establecer el valor por defecto en "usuarios"
+            document.getElementById('tipoRegistro').value = 'usuarios';
+        
+            // Llamar a la función mostrarCamposRegistro al cargar la página
+            mostrarCamposRegistro();
+        });
+    </script>
 </head>
 <body>
     <?php
