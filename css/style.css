@@ -28,8 +28,12 @@ header h1 {
     text-align: center;
 }
 .container {
-    width: 30rem;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 10rem;
+}
+.columna {
+    flex: 1;
 }
 section article {
     background-color: var(--blanco);
@@ -46,7 +50,7 @@ section article:hover {
     box-shadow: 0 0.1rem 0.4rem var(--sombra);
 }
 section article img {
-    margin: 0 1px;
+    margin: 0 0.6rem;
 }
 footer {
     background-color: var(--segundo);
@@ -76,7 +80,7 @@ footer a:hover {
     padding: 0;
     border-radius: 0 0 0.6rem 0.6rem;
     position: fixed;
-    top: 0px;
+    top: 0;
     text-align: right;
 }
 .menu li {

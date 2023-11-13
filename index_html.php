@@ -14,30 +14,34 @@
 </header>
 <main>
     <section class="container" id="publicaciones">
-        <article>
-            <h2>Proyecto 1</h2>
-            <p>Descripcion del proyecto desarrollado</p>
-            <img src="imagenes/djordje-vukojicic-Akrqd6maKqw-unsplash.jpg" alt="" width="300">
-            <p>Mas texto acerca del proyecto, ejemplo basico del proyecto</p>
-        </article>
-        <article>
-            <h2>Proyecto 2</h2>
-            <p>Descripcion del proyecto desarrollado</p>
-            <img src="imagenes/djordje-vukojicic-Akrqd6maKqw-unsplash.jpg" alt="" width="300">
-            <p>Mas texto acerca del proyecto, ejemplo basico del proyecto</p>
-        </article>
-        <article>
-            <h2>Proyecto 3</h2>
-            <p>Descripcion del proyecto desarrollado</p>
-            <img src="imagenes/djordje-vukojicic-Akrqd6maKqw-unsplash.jpg" alt="" width="300">
-            <p>Mas texto acerca del proyecto, ejemplo basico del proyecto</p>
-        </article>
-        <article>
-            <h2>Proyecto 4</h2>
-            <p>Descripcion del proyecto desarrollado</p>
-            <img src="imagenes/djordje-vukojicic-Akrqd6maKqw-unsplash.jpg" alt="" width="300">
-            <p>Mas texto acerca del proyecto, ejemplo basico del proyecto</p>
-        </article>
+        <div>
+            <article>
+                <h2>Proyecto 1</h2>
+                <p>Descripcion del proyecto desarrollado</p>
+                <img src="imagenes/djordje-vukojicic-Akrqd6maKqw-unsplash.jpg" alt="" width="300">
+                <p>Mas texto acerca del proyecto, ejemplo basico del proyecto</p>
+            </article>
+            <article>
+                <h2>Proyecto 2</h2>
+                <p>Descripcion del proyecto desarrollado</p>
+                <img src="imagenes/djordje-vukojicic-Akrqd6maKqw-unsplash.jpg" alt="" width="300">
+                <p>Mas texto acerca del proyecto, ejemplo basico del proyecto</p>
+            </article>
+            </div>
+        <div>
+            <article>
+                <h2>Proyecto 3</h2>
+                <p>Descripcion del proyecto desarrollado</p>
+                <img src="imagenes/djordje-vukojicic-Akrqd6maKqw-unsplash.jpg" alt="" width="300">
+                <p>Mas texto acerca del proyecto, ejemplo basico del proyecto</p>
+            </article>
+            <article>
+                <h2>Proyecto 4</h2>
+                <p>Descripcion del proyecto desarrollado</p>
+                <img src="imagenes/djordje-vukojicic-Akrqd6maKqw-unsplash.jpg" alt="" width="300">
+                <p>Mas texto acerca del proyecto, ejemplo basico del proyecto</p>
+            </article>
+            </div>
     </section>
     <section id="nosotros">
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit hic ea dicta neque! Excepturi ex laborum fugiat perferendis, dolorum atque placeat? Dolor enim officia, quibusdam sapiente aliquid deserunt ut voluptates.</p>
