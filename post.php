@@ -112,7 +112,7 @@
             
             if ($result){
                 echo "Datos almacenados correctamente";
-                echo "<script>window.location.href='index.php?mensaje=Bienvenido';</script>";
+                echo "<script>window.location.href='proyectos.php?mensaje=Bienvenido';</script>";
                 exit();
             }
 
@@ -121,78 +121,78 @@
             }  
         }
 
-        // if(isset($_POST["ingresar"])){
+        if(isset($_POST["ingresar"])){
             
-        //     if(empty($_POST["correo"]) || empty($_POST["contrasena"])){
-
-        //         echo "<div id='msg' class='msg' style='color: #7f0001; text-align: center; margin-top: 50px; font-size: 20px; font-weight: bold; font-style: oblique;'>Por favor, llene todos los campos de ingreso para continuar</div>" . mysqli_connect_error();
-        //         echo "<script>
-        //             setTimeout(function(){
-
-        //                 var mensajeExitoso = document.getElementById('msg');
-
-        //                 if(mensajeExitoso){
-        //                     mensajeExitoso.style.display = 'none';
-        //                 }
-        //             },4000); //3s dilay
-        //         </script>";
-    
-        //     }else{
-
-        //         $correo = $_POST["correo"];
-        //         $contraseña =trim($_POST["contrasena"]);
-        //         ingreso($correo, $contraseña);
-        //     }
-        // }
-
-        // function ingreso($correo, $contraseña){
-       
-        //     $query = "SELECT * FROM usuarios WHERE correoPersonal = '$correo' AND contrasena = '$contraseña' ";
-        //     $result = consulta($query);
-    
-        //     //muestra si la consulta se envia correctamente
-        //     #var_dump($result);
-           
+            $correo = $_POST["correo"];
+            $contrasena = $_POST["contrasena"];
             
-    
-        //     if(mysqli_num_rows($result) > 0){
-                
-        //         echo "<div id='msg' class='msg' style='color: #7f0001; text-align: center; margin-top: 50px; font-size: 20px; font-weight: bold; font-style: oblique;'>Bienvenid@ a Uniproyectos!</div>" . mysqli_connect_error();
-        //         echo "<script>
-        //                 setTimeout(function(){
-    
-        //                     var mensajeExitoso = document.getElementById('msg');
-    
-        //                     if(mensajeExitoso){
-        //                         mensajeExitoso.style.display = 'none';
-        //                     }
-        //                 },4000); //3s dilay
-        //             </script>";
-        //             header("Location: publicacion.php?mensaje=Bienvenido");
-        //             exit();  
-        //     }else{
-                
-        //         $query = "SELECT * FROM usuarios WHERE correoPersonal = '$correo' AND contrasena = '$contraseña' ";
-        //         $result = consulta($query);
-    
-        //         if($result){
-    
-        //             echo "<div id='msg' class='msg' style='color: #ffff; text-align: center; margin-top: 50px; font-size: 20px; font-weight: bold;'>Contraseña y/o correo incorrecto verifique he intente nuevamente</div>";
-        //             echo "<script>
-        //                 setTimeout(function(){
-    
-        //                     var mensajeExitoso = document.getElementById('msg');
-    
-        //                     if(mensajeExitoso){
-        //                         mensajeExitoso.style.display = 'none';
-        //                     }
-        //                 },4000); //3s dilay
-        //                 </script>";    
-        //         }        
-        //     }
-        // }
+            if(empty($correo) || empty($contrasena)){
+                mensaje("Ups!, por favor llena todos los campos de ingreso");
+            }else{
+                $correo = $_POST["correo"];
+                $contrasena =trim($_POST["contrasena"]);
+                ingreso($correo, $contrasena);
+            }
+        }
+    }
+
+    function ingreso($correo, $contrasena){
         
-        // // exit();
-    
+        $consulta = "SELECT * FROM usuarios WHERE correoPersonal = '$correo'";
+        
+        $result = consulta($consulta);
+           
+        if(mysqli_num_rows($result) > 0){
+            
+            $consulta = "SELECT * FROM usuarios WHERE correoPersonal = '$correo' AND contrasena = '$contrasena'";
+        
+            $result = consulta($consulta);
+            
+            if(mysqli_num_rows($result) > 0){
+                mensaje("¡Bienvenido a UniProyectos!");
+                echo "<script>window.location.href='publicacion.php?mensaje=Bienvenido';</script>";
+                exit();
+            }else{
+                mensaje("Ups!, correo y/o contraseña incorrectos por favor valida tus credenciales :)");
+            }
+        }else{
+            $consulta = "SELECT * FROM empresas WHERE correo = '$correo'";
+        
+            $result = consulta($consulta);
+            
+            if(mysqli_num_rows($result) > 0){
+
+                $consulta = "SELECT * FROM empresas WHERE correo = '$correo' AND contrasena = '$contrasena'";
+            
+                $result = consulta($consulta);
+
+                if(mysqli_num_rows($result) > 0){
+                    mensaje("¡Bienvenido a UniProyectos!");
+                    echo "<script>window.location.href='proyectos.php?mensaje=Bienvenido';</script>";
+                    exit();
+                }else{
+                    mensaje("Ups!, correo y/o contraseña incorrectos, por favor valida tus credenciales :)");
+                }
+            }else{
+                mensaje("Ups!, al parecer aun no te has registrado, por favor registrate :)");
+                echo "<script>window.location.href='registro.php?mensaje=Registrate';</script>";
+            }
+        }
+    }
+
+    function mensaje($mensaje){
+        echo "
+            <div id='mensaje' class='mensaje' style='display: flex; text-align: center; align-items: center; justify-content: center;'>
+                <p>$mensaje</p>
+            </div>";
+        echo "
+            <script>
+                const mensaje = document.getElementById('mensaje');
+                mensaje.style.display = 'block';
+                setTimeout(() => {
+                    mensaje.style.display = 'none';
+                }, 3000);
+            </script>
+            ";
     }
 ?>

@@ -8,8 +8,8 @@
             <label for="correo">Correo electrónico</label>
             <input type="email" name="correo" id="correo" placeholder="Correo electrónico">
             <br>
-            <label for="contraseña">Contraseña</label>
-            <input type="password" name="contraseña" id="contraseña" placeholder="Contraseña">
+            <label for="contrasena">Contraseña</label>
+            <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
             <br>
             <div class="acciones">
                 <button type="submit" name="ingresar">Ingresar</button>
