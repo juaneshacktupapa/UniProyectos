@@ -15,33 +15,54 @@
 <main>
     <section class="container" id="publicaciones">
         <div>
-            <article>
-                <h2>Proyecto 1</h2>
-                <p>Descripcion del proyecto desarrollado</p>
-                <img src="imagenes/djordje-vukojicic-Akrqd6maKqw-unsplash.jpg" alt="" width="300">
-                <p>Mas texto acerca del proyecto, ejemplo basico del proyecto</p>
-            </article>
-            <article>
-                <h2>Proyecto 2</h2>
-                <p>Descripcion del proyecto desarrollado</p>
-                <img src="imagenes/djordje-vukojicic-Akrqd6maKqw-unsplash.jpg" alt="" width="300">
-                <p>Mas texto acerca del proyecto, ejemplo basico del proyecto</p>
-            </article>
-            </div>
+            <?php
+                include "conexionDB.php";
+                $consulta = "SELECT * FROM proyecto WHERE MOD(id, 2) = 1";
+                $result = consulta($consulta);
+                if($result){
+                    $contar = mysqli_num_rows($result);
+                    if($contar > 0){
+                        while($row = $result->fetch_assoc()){
+                            echo '<article>';
+                            echo '<h2>' . $row['titulo'] . '</h2>';
+                            echo '<p>' . $row['descripcion'] . '</p>';
+                            echo '<p>' . $row['informacionAdicional'] . '</p>';
+                            echo '</article>';
+                        }
+                    }else{
+                        echo '<article>';
+                        echo '<h2>Sin proyectos</h2>';
+                        echo '<p>No hay mas proyectos registrados</p>';
+                        echo '<p>Por favor ingresa mas proyectos</p>';
+                        echo '</article>';
+                    }
+                }
+            ?>
+        </div>
         <div>
-            <article>
-                <h2>Proyecto 3</h2>
-                <p>Descripcion del proyecto desarrollado</p>
-                <img src="imagenes/djordje-vukojicic-Akrqd6maKqw-unsplash.jpg" alt="" width="300">
-                <p>Mas texto acerca del proyecto, ejemplo basico del proyecto</p>
-            </article>
-            <article>
-                <h2>Proyecto 4</h2>
-                <p>Descripcion del proyecto desarrollado</p>
-                <img src="imagenes/djordje-vukojicic-Akrqd6maKqw-unsplash.jpg" alt="" width="300">
-                <p>Mas texto acerca del proyecto, ejemplo basico del proyecto</p>
-            </article>
-            </div>
+            <?php
+                $consulta = "SELECT * FROM proyecto WHERE MOD(id, 2) = 0";
+                $result = consulta($consulta);
+                if($result){
+                    $contar = mysqli_num_rows($result);
+                    if($contar > 0){
+                        while($row = $result->fetch_assoc()){
+                            echo '<article>';
+                            echo '<h2>' . $row['titulo'] . '</h2>';
+                            echo '<p>' . $row['descripcion'] . '</p>';
+                            echo '<p>' . $row['informacionAdicional'] . '</p>';
+                            echo '</article>';
+                        }
+                    }else{
+                        echo '<article>';
+                        echo '<h2>Sin proyectos</h2>';
+                        echo '<p>No hay mas proyectos registrados</p>';
+                        echo '<p>Por favor ingresa mas proyectos</p>';
+                        echo '</article>';
+                    }
+                }
+            ?>
+        </div>
     </section>
     <section id="nosotros">
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit hic ea dicta neque! Excepturi ex laborum fugiat perferendis, dolorum atque placeat? Dolor enim officia, quibusdam sapiente aliquid deserunt ut voluptates.</p>
