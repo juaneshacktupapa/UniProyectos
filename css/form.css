@@ -22,12 +22,39 @@ header {
 }
 #hnproyecto {
     background-color: var(--segundo);
-    color: var(--teal);
+    color: var(--tercero);
     border-radius: 0 0 0.5rem 0.5rem;
     margin-bottom: 0.5rem;
+    padding: 0.5rem 0 0 0; 
 }
 header h1 {
     font-size: 2rem;
+}
+.menu {
+    width: 100% !important;
+    background: var(--teal);
+    list-style: none;
+    margin: 0;
+    padding: 0.1rem 0 0.1rem 0;
+    font-size: 0.2rem;
+    border-radius: 0 0 0.6rem 0.6rem;
+    top: 0;
+}
+.menu li {
+    display: inline-block;
+    padding: 0 0.2rem;
+}
+.menu li a {
+    display: inline-block;
+    padding: 0.2rem 3rem;
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 1rem;
+}
+.menu li a:hover {
+    background: var(--blanco);
+    color: var(--teal);
+    border-radius: 0.6rem;
 }
 main {
     display: flex;

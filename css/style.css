@@ -27,6 +27,20 @@ header h1 {
     font-size: 3rem;
     text-align: center;
 }
+#hproyectos {
+    background-color: var(--segundo);
+    color: var(--tercero);
+    border-radius: 0 0 0.5rem 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 0 0 0; 
+}
+#hproyectos div {
+    padding: 0;
+}
+#hproyectos h1 {
+    font-size: 2rem;
+    text-align: center;
+}
 .container {
     display: flex;
     justify-content: center;
@@ -71,6 +85,33 @@ footer a {
 }
 footer a:hover {
     color: var(--teal);
+}
+.menuvp {
+    width: 100% !important;
+    background: var(--teal);
+    list-style: none;
+    margin: 0;
+    padding: 0.1rem 0 0.1rem 0;
+    font-size: 0.2rem;
+    border-radius: 0 0 0.6rem 0.6rem;
+    top: 0;
+    text-align: center;
+}
+.menuvp li {
+    display: inline-block;
+    padding: 0 0.2rem;
+}
+.menuvp li a {
+    display: inline-block;
+    padding: 0.2rem 3rem;
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 1rem;
+}
+.menuvp li a:hover {
+    background: var(--blanco);
+    color: var(--teal);
+    border-radius: 0.6rem;
 }
 .menu {
     width: 100% !important;

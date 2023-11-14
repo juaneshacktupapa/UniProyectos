@@ -1,5 +1,13 @@
 <header id="hnproyecto">
-    <h1>Nuevo Proyecto</h1>
+    <div>
+        <h1>Nuevo Proyecto</h1>
+    </div>
+    <nav class="menu">
+        <ul>
+            <li><a href="proyectos.php">Proyectos</a></li>
+            <li><a href="#hnproyecto">Publicar</a></li>
+        </ul>
+    </nav>
 </header>
 <main>
     <form action="" method="post" id="form_publicar">
