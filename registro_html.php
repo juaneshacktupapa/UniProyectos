@@ -146,6 +146,9 @@
                 <option value="Empresas de Alimentación y Bebidas">Empresas de Alimentación y Bebidas</option>
                 <option value="Empresas de Energía y Recursos Naturales">Empresas de Energía y Recursos Naturales</option>
                 <option value="Empresas de Entretenimiento y Medios">Empresas de Entretenimiento y Medios</option>
+                <option value="Publica">Publica</option>
+                <option value="Privada">Privada</option>
+                <option value="Publico - Privada">Publico - Privada</option>
             </select>
 
             <label for="descripcion">Descripción de la Empresa</label>

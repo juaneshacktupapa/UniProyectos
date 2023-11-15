@@ -66,7 +66,7 @@ CREATE TABLE pro_usu (
     id_Proyecto INT,
     id_Usuario INT,
     id_Empresas INT,
-    FOREIGN KEY (id_Proyecto) REFERENCES Proyecto(id),
-    FOREIGN KEY (id_Usuario) REFERENCES Usuarios(iD),
-    FOREIGN KEY (id_Empresas) REFERENCES Empresas(iD)
+    FOREIGN KEY (id_Proyecto) REFERENCES proyecto(id),
+    FOREIGN KEY (id_Usuario) REFERENCES usuarios(iD),
+    FOREIGN KEY (id_Empresas) REFERENCES empresas(iD)
 );

@@ -3,6 +3,9 @@
 
     include "conexionDB.php";
 
+    $empresaLog = 1;
+    $usuarioLog = 1;
+
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
         if(isset($_POST["registrar"])){
@@ -37,18 +40,29 @@
                 $fechaHoraRegistro = date("Y-m-d H:i:s"); // Obtiene la fecha y hora actuales del servidor
                 
                 $sexoBooleano = ($sexo === "M") ? 1 : 0;
-
-                $consulta = "INSERT INTO usuarios (nombres, apellidos, correoPersonal, contrasena, numeroCelular, numeroFijo, tipoDocumento, numeroDocumento, fechaNacimiento, paisNacimiento, ciudadNacimiento, direccion, estadoCivil, sexo, perfil, universidad, correoInstitucional, grado, aceptaTerminos, fechaHoraRegistro) VALUES ('$nombres', '$apellidos', '$correoPersonal', '$contrasena', $numeroCelular, $numeroFijo, '$tipoDocumento', $numeroDocumento, '$fechaNacimiento', '$paisNacimiento', '$ciudadNacimiento', '$direccion', '$estadoCivil', '$sexoBooleano', '$perfil', '$universidad', '$correoInstitucional', '$grado', $aceptaTerminos, '$fechaHoraRegistro')";
-                    
-                $result = consulta($consulta);
                 
-                if ($result){
-                    echo "Datos almacenados correctamente";
-                    echo "<script>window.location.href='login.php?mensaje=Bienvenido';</script>";
-                    exit();
-                }
-                if (!$result) {
-                    echo "Error en la consulta: " . mysqli_error($conexion);
+                $consulta = "SELECT * FROM usuarios WHERE correoPersonal = '$correoPersonal'";
+                $resultUsuarios = consulta($consulta);
+                
+                
+                $consulta = "SELECT * FROM empresas WHERE correo = '$correoPersonal'";
+                $resultEmpresas = consulta($consulta);
+                
+                if (mysqli_num_rows($resultUsuarios) > 0 || mysqli_num_rows($resultEmpresas) > 0) {
+                    mensaje("Ups!, correo y/o contraseña incorrectos, por favor valida tus credenciales :)");
+                }else{
+                    $consulta = "INSERT INTO usuarios (nombres, apellidos, correoPersonal, contrasena, numeroCelular, numeroFijo, tipoDocumento, numeroDocumento, fechaNacimiento, paisNacimiento, ciudadNacimiento, direccion, estadoCivil, sexo, perfil, universidad, correoInstitucional, grado, aceptaTerminos, fechaHoraRegistro) VALUES ('$nombres', '$apellidos', '$correoPersonal', '$contrasena', $numeroCelular, $numeroFijo, '$tipoDocumento', $numeroDocumento, '$fechaNacimiento', '$paisNacimiento', '$ciudadNacimiento', '$direccion', '$estadoCivil', '$sexoBooleano', '$perfil', '$universidad', '$correoInstitucional', '$grado', $aceptaTerminos, '$fechaHoraRegistro')";
+                    
+                    $result = consulta($consulta);
+                    
+                    if ($result){
+                        echo "Datos almacenados correctamente";
+                        echo "<script>window.location.href='login.php?mensaje=Bienvenido';</script>";
+                        exit();
+                    }
+                    if (!$result) {
+                        echo "Error en la consulta: " . mysqli_error($conexion);
+                    }
                 }
                     
             } elseif ($tipoRegistro === "empresas") {
@@ -76,18 +90,28 @@
                 $aceptaTerminos = isset($_POST["aceptaTerminosE"]) ? 1 : 0; // Si se marcó el checkbox, se almacena "Sí", de lo contrario, "No"
                 $fechaHoraRegistro = date("Y-m-d H:i:s"); // Obtiene la fecha y hora actuales del servidor
                 
-                $consulta = "INSERT INTO empresas (nombre, razonSocial, correo, contrasena, numeroFijo, numeroCelular, NIT, tipoEmpresa, descripcion, area, tamaño, sitioWeb, pais, direccion, nombreRepresentanteLegal, cargoRepresentanteLegal, correoRepresentanteLegal, numeroRepresentanteLegal, aceptaTerminos, fechaHoraRegistro) VALUES ('$nombre', '$razonSocial', '$correo', '$contrasena', $numeroFijo, $numeroCelular, $NIT, '$tipoEmpresa', '$descripcion', '$area', '$tamaño', '$sitioWeb', '$pais', '$direccion', '$nombreRepresentanteLegal', '$cargoRepresentanteLegal', '$correoRepresentanteLegal', $numeroRepresentanteLegal, $aceptaTerminos, '$fechaHoraRegistro')";  
-
-                $result = consulta($consulta);
+                $consulta = "SELECT * FROM usuarios WHERE correoPersonal = '$correo'";
+                $resultUsuarios = consulta($consulta);
                 
-                if ($result){
-                    echo "Datos almacenados correctamente";
-                    echo "<script>window.location.href='login.php?mensaje=Bienvenido';</script>";
-                    exit();
-                }
+                $consulta = "SELECT * FROM empresas WHERE correo = '$correo'";
+                $resultEmpresas = consulta($consulta);
+                
+                if (mysqli_num_rows($resultUsuarios) > 0 || mysqli_num_rows($resultEmpresas) > 0) {
+                    mensaje("Ups!, correo y/o contraseña incorrectos, por favor valida tus credenciales :)");
+                }else{
+                    $consulta = "INSERT INTO empresas (nombre, razonSocial, correo, contrasena, numeroFijo, numeroCelular, NIT, tipoEmpresa, descripcion, area, tamaño, sitioWeb, pais, direccion, nombreRepresentanteLegal, cargoRepresentanteLegal, correoRepresentanteLegal, numeroRepresentanteLegal, aceptaTerminos, fechaHoraRegistro) VALUES ('$nombre', '$razonSocial', '$correo', '$contrasena', $numeroFijo, $numeroCelular, $NIT, '$tipoEmpresa', '$descripcion', '$area', '$tamaño', '$sitioWeb', '$pais', '$direccion', '$nombreRepresentanteLegal', '$cargoRepresentanteLegal', '$correoRepresentanteLegal', $numeroRepresentanteLegal, $aceptaTerminos, '$fechaHoraRegistro')";  
 
-                if (!$result) {
-                    echo "Error en la consulta: " . mysqli_error($conexion);
+                    $result = consulta($consulta);
+                    
+                    if ($result){
+                        echo "Datos almacenados correctamente";
+                        echo "<script>window.location.href='login.php?mensaje=Bienvenido';</script>";
+                        exit();
+                    }
+
+                    if (!$result) {
+                        echo "Error en la consulta: " . mysqli_error($conexion);
+                    }
                 }    
             }
         }
@@ -111,9 +135,22 @@
             $result = consulta($consulta);
             
             if ($result){
-                echo "Datos almacenados correctamente";
-                echo "<script>window.location.href='proyectos.php?mensaje=Bienvenido';</script>";
-                exit();
+                $consulta = "SELECT MAX(id) AS id_Proyecto FROM proyecto;";
+                $result = consulta($consulta);
+                
+                if($result){
+                    $row = mysqli_fetch_assoc($result);
+                    $id_Proyecto = $row['id_Proyecto'];
+                    $consulta = "INSERT INTO pro_usu (id_Proyecto, id_Usuario, id_Empresas) VALUES ($id_Proyecto, $usuarioLog, $empresaLog);";
+                    $result = consulta($consulta);
+                    
+                    if($result){
+                        echo "Datos almacenados correctamente";
+                
+                        echo "<script>window.location.href='proyectos.php?mensaje=Bienvenido';</script>";
+                        exit();
+                    }
+                }
             }
 
             if (!$result) {
@@ -150,6 +187,10 @@
             
             if(mysqli_num_rows($result) > 0){
                 mensaje("¡Bienvenido a UniProyectos!");
+
+                $consulta = "SELECT id FROM usuarios WHERE correoPersonal = '$correo'";
+                $usuarioLog = consulta($consulta);
+                
                 echo "<script>window.location.href='publicacion.php?mensaje=Bienvenido';</script>";
                 exit();
             }else{
@@ -163,11 +204,14 @@
             if(mysqli_num_rows($result) > 0){
 
                 $consulta = "SELECT * FROM empresas WHERE correo = '$correo' AND contrasena = '$contrasena'";
-            
                 $result = consulta($consulta);
 
                 if(mysqli_num_rows($result) > 0){
                     mensaje("¡Bienvenido a UniProyectos!");
+                    
+                    $consulta = "SELECT id FROM empresas WHERE correo = '$correo'";
+                    $empresaLog = consulta($consulta);
+                    
                     echo "<script>window.location.href='proyectos.php?mensaje=Bienvenido';</script>";
                     exit();
                 }else{
@@ -191,7 +235,7 @@
                 mensaje.style.display = 'block';
                 setTimeout(() => {
                     mensaje.style.display = 'none';
-                }, 3000);
+                }, 5000);
             </script>
             ";
     }
