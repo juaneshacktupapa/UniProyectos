@@ -151,10 +151,20 @@ footer a:hover {
     border-radius: 0.6rem;
 }
 #nosotros {
-    
     border-top: 0.06rem solid var(--sombra);
 }
 #nosotros p {
     margin: 1rem auto;
+    padding: 0.5rem;
     width: 50rem;
+    background-color: var(--blanco);
+    border-radius: 0.6rem;
+}
+#nosotros ul li {
+    list-style: none;
+    margin: 1rem auto;
+    padding: 0.5rem;
+    width: 50rem;
+    background-color: var(--tercero);
+    border-radius: 0.6rem;
 }
