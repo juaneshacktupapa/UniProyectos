@@ -1,4 +1,5 @@
 <header>
+    <a href="index.php" id="linkIndex">Inicio</a>
     <h1>Regístrate</h1>
 </header>
 <main>

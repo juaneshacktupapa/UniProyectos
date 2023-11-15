@@ -1,4 +1,5 @@
 <header>
+    <a href="index.php" id="linkIndex">Inicio</a>
     <h1>Iniciar sesión</h1>
 </header>
 <main>

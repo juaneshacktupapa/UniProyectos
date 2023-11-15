@@ -20,6 +20,11 @@ header {
     text-align: center;
     padding: 0.5rem;
 }
+header a {
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+    float: left;
+}
 #hnproyecto {
     background-color: var(--segundo);
     color: var(--tercero);
@@ -29,6 +34,7 @@ header {
 }
 header h1 {
     font-size: 2rem;
+    display: inline-block;
 }
 .menu {
     width: 100% !important;
