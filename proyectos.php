@@ -10,7 +10,8 @@
 </head>
 <body>
     <?php
-        include "proyectos_html.php";
+        include "consulta.php";
+        require "proyectos_html.php";
     ?>
 </body>
 </html>

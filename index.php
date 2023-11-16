@@ -10,6 +10,7 @@
 </head>
 <body>
     <?php
+        include "consulta.php";
         require "index_html.php";
     ?>
 </body>

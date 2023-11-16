@@ -5,6 +5,11 @@
 
     $empresaLog = 1;
     $usuarioLog = 1;
+    
+    header("Cache-Control: no-cache, no-store, must-revalidate");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+
 
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
