@@ -11,7 +11,7 @@
                     echo '<article>';
                     echo '<h2>' . $row['titulo'] . '</h2>';
                     echo '<p>' . $row['descripcion'] . '</p>';
-                    echo '<img src="' . $row["imagen"] . '" alt="" height="300rem">';
+                    echo '<div class="imagenes"> <img src="' . $row["imagen"] . '" alt=""> </div>';
                     echo '<p>' . $row['informacionAdicional'] . '</p>';
                     echo '</article>';
                 }
@@ -24,7 +24,7 @@
             }
         }
     }
-    
+
     function columnaB(){
         $consulta = "SELECT * FROM proyecto WHERE MOD(id, 2) = 0";
         $result = consulta($consulta);
@@ -35,7 +35,7 @@
                     echo '<article>';
                     echo '<h2>' . $row['titulo'] . '</h2>';
                     echo '<p>' . $row['descripcion'] . '</p>';
-                    echo '<img src="' . $row["imagen"] . '" alt="" height="300rem">';
+                    echo '<div class="imagenes"> <img src="' . $row["imagen"] . '" alt=""> </div>';
                     echo '<p>' . $row['informacionAdicional'] . '</p>';
                     echo '</article>';
                 }

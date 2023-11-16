@@ -58,6 +58,18 @@ section article {
     cursor: pointer;
     width: 28rem;
 }
+section article .imagenes{
+    text-align: center;
+}
+section article img{
+    border-radius: 0.5rem;
+    padding: 0.1rem;
+    box-shadow: 0.3rem 0.3rem 0.3rem var(--sombra);
+    border: 0.06rem solid var(--tercero);
+    max-width: 26rem;
+    min-height: 18rem;
+    max-height: 18rem;
+}
 section article h2, section article p {
     margin: 1rem;
 }
