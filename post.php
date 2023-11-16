@@ -56,7 +56,7 @@
                     $result = consulta($consulta);
                     
                     if ($result){
-                        echo "Datos almacenados correctamente";
+                        mensaje("Datos almacenados correctamente");
                         echo "<script>window.location.href='login.php?mensaje=Bienvenido';</script>";
                         exit();
                     }
@@ -89,7 +89,7 @@
                 $numeroRepresentanteLegal = $_POST["numeroRepresentanteLegal"];
                 $aceptaTerminos = isset($_POST["aceptaTerminosE"]) ? 1 : 0; // Si se marcó el checkbox, se almacena "Sí", de lo contrario, "No"
                 $fechaHoraRegistro = date("Y-m-d H:i:s"); // Obtiene la fecha y hora actuales del servidor
-                
+
                 $consulta = "SELECT * FROM usuarios WHERE correoPersonal = '$correo'";
                 $resultUsuarios = consulta($consulta);
                 
@@ -104,7 +104,7 @@
                     $result = consulta($consulta);
                     
                     if ($result){
-                        echo "Datos almacenados correctamente";
+                        mensaje("Datos almacenados correctamente");
                         echo "<script>window.location.href='login.php?mensaje=Bienvenido';</script>";
                         exit();
                     }
@@ -129,8 +129,12 @@
             $fechaFin = $_POST["fechaFin"];
             $fechaHoraRegistro = date("Y-m-d H:i:s"); // Obtiene la fecha y hora actuales del servidor
             $informacionAdicional = $_POST["informacionAdicional"];
+            $imagenProyectoNombre = $titulo . basename($_FILES["imagenProyecto"]["name"]);
+            $temporal = $_FILES["imagenProyecto"]["tmp_name"];
             
-            $consulta = "INSERT INTO proyecto (titulo, descripcion, area, areaTematica, estado, ubicacion, correo, telefono, fechaInicio, fechaFin, fechaRegistro, informacionAdicional) VALUES ('$titulo', '$descripcion', '$area', '$areaTematica', '$estado', '$ubicacion', '$correo', '$telefono', '$fechaInicio', '$fechaFin', '$fechaHoraRegistro', '$informacionAdicional')";
+            $imagen = guardarImagenes($imagenProyectoNombre, $temporal);
+
+            $consulta = "INSERT INTO proyecto (titulo, descripcion, area, areaTematica, estado, ubicacion, correo, telefono, fechaInicio, fechaFin, fechaRegistro, informacionAdicional, imagen) VALUES ('$titulo', '$descripcion', '$area', '$areaTematica', '$estado', '$ubicacion', '$correo', '$telefono', '$fechaInicio', '$fechaFin', '$fechaHoraRegistro', '$informacionAdicional', '$imagen')";
     
             $result = consulta($consulta);
             
@@ -145,8 +149,7 @@
                     $result = consulta($consulta);
                     
                     if($result){
-                        echo "Datos almacenados correctamente";
-                
+                        mensaje("Datos almacenados correctamente");
                         echo "<script>window.location.href='proyectos.php?mensaje=Bienvenido';</script>";
                         exit();
                     }
@@ -157,7 +160,7 @@
                 echo "Error en la consulta: " . mysqli_error($conexion);
             }  
         }
-
+        
         if(isset($_POST["ingresar"])){
             
             $correo = $_POST["correo"];
@@ -239,4 +242,25 @@
             </script>
             ";
     }
+    
+    function guardarImagenes($imagenProyectoNombre, $temporal){
+        $directorio = "uploads/";
+        $destino = $directorio . $imagenProyectoNombre;
+        $check = getimagesize($temporal);
+        
+        if ($check !== false) {
+            if(file_exists($destino)){
+                mensaje("Ups!, la imagen ya existe, por favor valida el nombre de la imagen :)");
+            }
+            else{
+                if (move_uploaded_file($temporal, $destino)){
+                    return $destino;
+                }else{
+                    mensaje("Ups!, la imagen no pudo ser cargado, por favor carga de nuevo la imagen :)");
+                }
+            }
+        } else {
+            mensaje("Ups!, el archivo no es una imagen, por favor valida el formato :)");
+        } 
+    }  
 ?>

@@ -140,6 +140,9 @@ footer a:hover {
     color: var(--teal);
     border-radius: 0.6rem;
 }
+.inicio {
+    margin-right: 0.2rem; 
+}
 .inicio a {
     color: var(--teal) !important;
     background: var(--blanco);

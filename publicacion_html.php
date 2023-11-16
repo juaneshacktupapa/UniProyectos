@@ -10,7 +10,7 @@
     </nav>
 </header>
 <main>
-    <form action="" method="post" id="form_publicar">
+    <form action="" method="post" id="form_publicar" enctype="multipart/form-data">
         <!-- Aquí van todos los campos de la BD -->
         <label for="titulo">Título del Proyecto</label>
         <input type="text" name="titulo" id="titulo" placeholder="Título del Proyecto" required>
@@ -96,7 +96,10 @@
 
         <label for="informacionAdicional">Información Adicional</label>
         <textarea name="informacionAdicional" id="informacionAdicional" placeholder="Información Adicional" required></textarea>
-
+        
+        <label for="imagenProyecto">Imagen Proyecto</label>
+        <input type="file" name="imagenProyecto" id="imagenProyecto" accept="image/*" required>
+        
         <div class="acciones">
             <button type="submit" name="publicar">Publicar</button>
         </div>

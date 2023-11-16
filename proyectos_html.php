@@ -23,6 +23,7 @@
                             echo '<article>';
                             echo '<h2>' . $row['titulo'] . '</h2>';
                             echo '<p>' . $row['descripcion'] . '</p>';
+                            echo '<img src="' . $row["imagen"] . '" alt="" height="200rem">';
                             echo '<p>' . $row['informacionAdicional'] . '</p>';
                             echo '</article>';
                         }
