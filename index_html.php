@@ -34,6 +34,18 @@
             <li>Implementar una plataforma para mejorar la gestión de proyectos, destacando su conservación y promoviendo su reconocimiento al público.</li>
             <li>Realizar un seguimiento a cada fase del proyecto, comprobando la funcionalidad de cada módulo y realizando pruebas de desarrollo para garantizar su optimo rendimiento y su conformidad a los requerimientos; así mismo que la herramienta pueda acoplarse a diversas situaciones.</li>
         </ul>
+        <br>
+        <p>Para llevar a cabo el desarrollo de esta primera fase se ha decidido plantear una serie de constos y tiempos a tener en cuenta en el desarrollo del proyecto</p>
+        <ul>
+            <li>Tiempo estimado: 1 mes de desarrollo</li>
+            <li>Valor Desarrollador Jr x mes: 2'500.000 COP</li>
+            <li>Valor Desarrollador Sr x mes: 5'500.000 COP</li>
+            <li>Alojamiento del aplicativo en la nube: 60.000 COP</li>
+            <li>Almacenamiento en la nube: 150.000 COP</li>
+            <li>Valor mes desarrollo: 8'210.000 COP</li>
+            <li>Valor sontenimiento mesual: 210.000 COP</li>
+        </ul>
+        <p>Esto se calculo basandose en un uso promedio de 100 usuarios al día y un almacenamiento mensual de 5gb aproximadamente</p>
     </section>
 </main>
 <footer>

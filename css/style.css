@@ -168,7 +168,7 @@ footer a:hover {
 #nosotros {
     border-top: 0.06rem solid var(--sombra);
 }
-#nosotros p {
+#nosotros p{
     margin: 1rem auto;
     padding: 0.5rem;
     width: 50rem;
