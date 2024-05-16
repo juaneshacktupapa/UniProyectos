@@ -153,7 +153,8 @@ footer a:hover {
     border-radius: 0.6rem;
 }
 .inicio {
-    margin-right: 0.2rem; 
+    margin-right: 0.5rem; 
+    margin-left: 0.2rem; 
 }
 .inicio a {
     color: var(--teal) !important;
@@ -161,8 +162,8 @@ footer a:hover {
     border-radius: 0.6rem;
 }
 .inicio a:hover {
-    background: var(--segundo) !important;
-    color: var(--teal) !important;
+    background: var(--teal) !important;
+    color: var(--blanco) !important;
     border-radius: 0.6rem;
 }
 #nosotros {
